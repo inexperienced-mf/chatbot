@@ -1,5 +1,5 @@
 package chatbot;
 
 public enum BotState {
-    Initial, WaitAnswer
+    NotWorking, Ready, WaitAnswer
 	}

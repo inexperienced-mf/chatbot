@@ -3,60 +3,124 @@ package chatbot;
 import java.io.File;
 import java.io.IOException;
 import java.util.*;
+import java.util.concurrent.Callable;
 
 class Bot {
-    private ArrayList<Message> history;
     private String userId;
     private BotState state;
-    private static final String HELP_TEXT = "very helpful text";
-    private static final String GREET_TEXT = "friendly greeting text";
+    private static final String HELP_TEXT;
+    private static final String GREET_TEXT;
+    private static final String WRONG_START_TEXT = "Начни с приветственного /start";
+    private static final String DEFAULT_TEXT = "Не совсем ясно. Уточни правила общеня: /help";
     private Question currentQuestion;
     private Random random;
-    private List<Question> list;
+    private List<Question> questions;
+    private int questionsLeft;
+    private int score;
+    private static Map<BotState, Map<String, Callable<String >>> behaviour;
+
+    static {
+        Scanner in = new Scanner("greeting.txt");
+        GREET_TEXT = in.next();
+        in.close();
+        in = new Scanner("help.txt");
+        HELP_TEXT = in.next();
+        in.close();
+    }
+
 
     public Bot(String id){
 		userId = id;
-		history = new ArrayList<Message>();
-        list = new ArrayList<Question>();
+        state = BotState.NotWorking;
+        questions = new ArrayList<Question>();
         random = new Random();
+
+        behaviour = new HashMap<BotState, Map<String, Callable<String>>>();
+        HashMap<String, Callable<String>> inner = new HashMap<String, Callable<String>>();
+        inner.put("/help", () ->  getHelpText());
+        behaviour.put(BotState.WaitAnswer, inner);
+        inner.put("/play", () ->  startNewGame());
+        behaviour.put(BotState.Ready, inner);
+        inner = new HashMap<String, Callable<String>>();
+        inner.put("/start", () ->  getGreetText());
+        behaviour.put(BotState.NotWorking, inner);
     }
-	  
+
     public Message respondTo(Message m) {
-        history.add(m);
-        String content = m.content;
-        String id = m.userId;
-        switch(m.content) {
-        	case "/help":
-        		return new Message(id, HELP_TEXT);
-        	case "/start":
-        		return new Message(id, GREET_TEXT);
-        	case "/askme":
-        		if (state == BotState.WaitAnswer)
-        			return new Message(id,"Dude, think again");
-        		state = BotState.WaitAnswer;
-        		chooseQuestion();
-        		return new Message(id, currentQuestion.questionText);
-        	default:
-        		if (state == BotState.WaitAnswer)
-        		{
-        			if (isCorrect(content)) {
-        				state = BotState.Initial;
-        				return new Message(id,"Good job dude");
-        			}
-        			else
-        				return new Message(id, "Bad job. Try again");
-        		}
-        		else
-                    return new Message(id, "Dude, think again");
+
+        String response = null;
+        Map<String, Callable<String>> inner = behaviour.get(state);
+        try {
+            if (state == BotState.NotWorking)
+                response = inner.getOrDefault(m.content, () -> getWrongStartText()).call();
+            else if (state == BotState.WaitAnswer)
+                response = inner.getOrDefault(m.content, () -> askQuestion(m.content)).call();
+            else
+                response = inner.getOrDefault(m.content, () -> getDefaultText()).call();
+        } catch (java.lang.Exception e) {
+
         }
+
+        return new Message(userId, response);
 	}
 
+	private static String getHelpText()
+    {
+        return HELP_TEXT;
+    }
+
+    private String getGreetText()
+    {
+        state = BotState.Ready;
+        return GREET_TEXT;
+    }
+
+    private String getWrongStartText(){
+        return WRONG_START_TEXT;
+    }
+
+    private String startNewGame()
+    {
+        questionsLeft = 3;
+        score = 0;
+        chooseQuestion();
+        state = BotState.WaitAnswer;
+        return currentQuestion.questionText;
+    }
+
+    private String getDefaultText(){
+        return DEFAULT_TEXT;
+    }
+
+    private String askQuestion(String content){
+        if (isCorrect(content)) {
+            score++;
+            questionsLeft--;
+            if (questionsLeft == 0) {
+                state = BotState.Ready;
+                return String.format(
+                        "Верно! Ура, викторина наконец-то закончилась! Ты набрал %d очков", score );
+            }
+            else {
+                chooseQuestion();
+                return String.format("Верно! Следующий вопрос: \n %s",
+                        currentQuestion.questionText);
+            }
+        }
+        else {
+            score--;
+            return "Неправильно :с . Ты теряешь 1 очко. Ещё варианты?";
+        }
+    }
+
+
+
     private void chooseQuestion() {
-        if (list.isEmpty())
+        if (questions.isEmpty())
             loadQuestions();
-        int index = random.nextInt(list.size());
-        this.currentQuestion = list.get(index);
-        list.remove(index);
+        int index = random.nextInt(questions.size());
+        this.currentQuestion = questions.get(index);
+        questions.remove(index);
     }
 
 	private void loadQuestions() {
@@ -72,9 +136,9 @@ class Bot {
             System.out.println("HAHAHA GOTCHA");
         }
                
-        list = new ArrayList<Question>();
-		for (String q: content.split("\n\n"))
-			list.add(makeQuestion(q));
+        questions = new ArrayList<Question>();
+		for (String q: content.split("\r\n\r\n"))
+			questions.add(makeQuestion(q));
     }
 
 	private Question makeQuestion(String raw) {
@@ -83,8 +147,8 @@ class Bot {
 				raw.substring(splitIndex));
 	}
     
-    private boolean isCorrect(String m) {
-    	return m.equals(currentQuestion.rightAnswer);
+    private boolean isCorrect(String answer) {
+    	return answer.equals(currentQuestion.rightAnswer);
     }
 
 }
