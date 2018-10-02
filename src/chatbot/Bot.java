@@ -8,8 +8,16 @@ import java.util.concurrent.Callable;
 class Bot {
     private String userId;
     private BotState state;
-    private static final String HELP_TEXT;
-    private static final String GREET_TEXT;
+    private static final String HELP_TEXT = "Доступные команды:\n" +
+            "/help - увидеть эту справочку\n" +
+            "/start - бот начнёт думать о вас и общаться с вами\n" +
+            "/stop - бот перестанет думать о вас и общаться с вами\n" +
+            "/play - бот сыграет с вами викторину в стиле \"вопрос-ответ\"";
+    private static final String GREET_TEXT = "Привет, дружок-пирожок! " +
+            "Мне пока не придумали имени, так что я просто Бот. " +
+            "Однако мне придумали назначение: проверять и повышать эрудицию моих собеседников. " +
+            "Пиши /play , и мы сыграем с тобой серию вопросов на самые разные темы. " +
+            "Пиши /help , чтобы уяснить, как со мной общаться.";
     private static final String WRONG_START_TEXT = "Начни с приветственного /start";
     private static final String DEFAULT_TEXT = "Не совсем ясно. Уточни правила общеня: /help";
     private Question currentQuestion;
@@ -17,16 +25,8 @@ class Bot {
     private List<Question> questions;
     private int questionsLeft;
     private int score;
-    private static Map<BotState, Map<String, Callable<String >>> behaviour;
+    private Map<BotState, Map<String, Callable<String >>> behaviour;
 
-    static {
-        Scanner in = new Scanner("greeting.txt");
-        GREET_TEXT = in.next();
-        in.close();
-        in = new Scanner("help.txt");
-        HELP_TEXT = in.next();
-        in.close();
-    }
 
 
     public Bot(String id){
@@ -133,7 +133,7 @@ class Bot {
             reader.close();
             
         } catch (IOException e) {
-            System.out.println("HAHAHA GOTCHA");
+            System.out.println("не удалось открыть questions.txt ");
         }
                
         questions = new ArrayList<Question>();
