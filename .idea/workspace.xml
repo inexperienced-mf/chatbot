@@ -1,14 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ca7d420d-1162-4914-b865-418f744aa70f" name="Default Changelist" comment="Добавлены тесты на класс Bot. Небольшие изменения в классе Bot. JUnit 4 &#10;добавлен в библиотеку.">
-      <change afterPath="$PROJECT_DIR$/lib/hamcrest-core-1.3.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/junit-4.12.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/chatbot/BotTests.java" afterDir="false" />
+    <list default="true" id="ca7d420d-1162-4914-b865-418f744aa70f" name="Default Changelist" comment="Задачи добавлены в README, чтение вопросов из файла вынесено в класс QuestionLoader.(1 часть 2 задачи)">
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/chatbot/QuestionsLoader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.classpath" beforeDir="false" afterPath="$PROJECT_DIR$/.classpath" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.project" beforeDir="false" afterPath="$PROJECT_DIR$/.project" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/chatbot/Bot.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/chatbot/Bot.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chatbot.iml" beforeDir="false" afterPath="$PROJECT_DIR$/chatbot.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/questions.txt" beforeDir="false" afterPath="$PROJECT_DIR$/questions.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/chatbot/Bot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/chatbot/Bot.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/chatbot/BotTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/chatbot/BotTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/chatbot/ChatBot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/chatbot/ChatBot.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/chatbot/MultiUserBot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/chatbot/MultiUserBot.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/bin/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -160,30 +165,155 @@
       </usages-collector>
       <usages-collector id="statistics.vcs.git.usages" />
     </session>
+    <session id="-386214522">
+      <usages-collector id="statistics.lifecycle.project">
+        <counts>
+          <entry key="project.closed" value="8" />
+          <entry key="project.open.time.16" value="3" />
+          <entry key="project.open.time.19" value="2" />
+          <entry key="project.open.time.21" value="2" />
+          <entry key="project.open.time.3" value="1" />
+          <entry key="project.open.time.90" value="1" />
+          <entry key="project.opened" value="9" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.edit">
+        <counts>
+          <entry key="classpath" value="1" />
+          <entry key="java" value="413" />
+          <entry key="md" value="93" />
+          <entry key="project" value="1" />
+          <entry key="txt" value="215" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.edit">
+        <counts>
+          <entry key="Eclipse" value="2" />
+          <entry key="JAVA" value="413" />
+          <entry key="Markdown" value="93" />
+          <entry key="PLAIN_TEXT" value="215" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.open">
+        <counts>
+          <entry key="classpath" value="1" />
+          <entry key="java" value="6" />
+          <entry key="md" value="1" />
+          <entry key="project" value="1" />
+          <entry key="txt" value="2" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.open">
+        <counts>
+          <entry key="Eclipse" value="2" />
+          <entry key="JAVA" value="6" />
+          <entry key="Markdown" value="1" />
+          <entry key="PLAIN_TEXT" value="2" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.vcs.git.usages" />
+      <usages-collector id="statistics.spring.boot.mvc.usages" />
+      <usages-collector id="statistics.js.language.service.starts" />
+      <usages-collector id="statistics.spring.boot.run.usages" />
+    </session>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/chatbot/Bot.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1232">
-              <caret line="25" column="30" lean-forward="true" selection-start-line="25" selection-start-column="30" selection-end-line="25" selection-end-column="30" />
+            <state relative-caret-position="1496">
+              <caret line="110" column="7" selection-start-line="110" selection-start-column="7" selection-end-line="110" selection-end-column="7" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="method#askQuestion#0;class#Bot#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/chatbot/ChatBot.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="459">
+              <caret line="27" column="1" lean-forward="true" selection-start-line="27" selection-start-column="1" selection-end-line="27" selection-end-column="1" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/chatbot/MultiUserBot.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="170">
+              <caret line="13" column="25" lean-forward="true" selection-start-line="13" selection-start-column="25" selection-end-line="13" selection-end-column="25" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/chatbot/QuestionsLoader.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="119">
+              <caret line="22" column="31" selection-start-line="22" selection-start-column="31" selection-end-line="22" selection-end-column="31" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/chatbot/BotTests.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="324">
+              <caret line="46" column="5" lean-forward="true" selection-start-line="46" selection-start-column="5" selection-end-line="46" selection-end-column="5" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/chatbot/BotTests.java">
+        <entry file="file://$PROJECT_DIR$/questions.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="308">
-              <caret line="14" column="64" lean-forward="true" selection-start-line="14" selection-start-column="64" selection-end-line="14" selection-end-column="64" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#135#136#0" expanded="true" />
-                <element signature="e#175#176#0" expanded="true" />
-                <element signature="e#196#197#0" expanded="true" />
-                <element signature="e#236#237#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="102">
+              <caret line="6" lean-forward="true" selection-start-line="6" selection-end-line="6" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/greeting.txt">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/.project">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="272">
+              <caret line="16" selection-start-line="16" selection-end-line="16" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/.classpath">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="119">
+              <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/chatbot/Message.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="68">
+              <caret line="4" column="20" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="20" />
             </state>
           </provider>
         </entry>
@@ -212,12 +342,17 @@
       <list>
         <option value="$PROJECT_DIR$/src/chatbot/SuperBot.java" />
         <option value="$PROJECT_DIR$/src/chatbot/Message.java" />
-        <option value="$PROJECT_DIR$/src/chatbot/ChatBot.java" />
         <option value="$PROJECT_DIR$/src/greeting.txt" />
         <option value="$PROJECT_DIR$/src/chatbot/BotState.java" />
         <option value="$PROJECT_DIR$/src/help.txt" />
+        <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/src/chatbot/MultiUserBot.java" />
+        <option value="$PROJECT_DIR$/src/chatbot/QuestionsLoader.java" />
+        <option value="$PROJECT_DIR$/src/chatbot/ChatBot.java" />
         <option value="$PROJECT_DIR$/src/chatbot/Bot.java" />
+        <option value="$PROJECT_DIR$/questions.txt" />
+        <option value="$PROJECT_DIR$/.project" />
+        <option value="$PROJECT_DIR$/.classpath" />
         <option value="$PROJECT_DIR$/src/chatbot/BotTests.java" />
       </list>
     </option>
@@ -234,25 +369,41 @@
     <option name="width" value="1349" />
     <option name="height" value="690" />
   </component>
+  <component name="ProjectInspectionProfilesVisibleTreeState">
+    <entry key="Project Default">
+      <profile-state>
+        <expanded-state>
+          <State />
+          <State>
+            <id>Java</id>
+          </State>
+          <State>
+            <id>Java 7Java language level migration aidsJava</id>
+          </State>
+          <State>
+            <id>Java language level migration aidsJava</id>
+          </State>
+        </expanded-state>
+        <selected-state>
+          <State>
+            <id>Convert2Diamond</id>
+          </State>
+        </selected-state>
+      </profile-state>
+    </entry>
+  </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
               <item name="chatbot" type="b2602c69:ProjectViewProjectNode" />
               <item name="chatbot" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="chatbot" type="b2602c69:ProjectViewProjectNode" />
-              <item name="chatbot" type="462c0819:PsiDirectoryNode" />
-              <item name="bin" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="chatbot" type="b2602c69:ProjectViewProjectNode" />
@@ -269,7 +420,8 @@
           <select />
         </subPane>
       </pane>
-      <pane id="AndroidView" />
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -278,7 +430,7 @@
     <property name="Repository.Attach.Sources" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1538516272133" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1539512486505" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
@@ -303,7 +455,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.BotTests">
+  <component name="RunManager" selected="Application.ChatBot">
     <configuration name="ChatBot" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="chatbot.ChatBot" />
       <module name="chatbot" />
@@ -338,15 +490,33 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="BotTests.testNotUnderstanding" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="chatbot" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="chatbot.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="chatbot" />
+      <option name="MAIN_CLASS_NAME" value="chatbot.BotTests" />
+      <option name="METHOD_NAME" value="testNotUnderstanding" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <list>
       <item itemvalue="Application.ePoint" />
       <item itemvalue="Application.ChatBot" />
       <item itemvalue="JUnit.BotTests" />
+      <item itemvalue="JUnit.BotTests.testNotUnderstanding" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.BotTests" />
         <item itemvalue="Application.ChatBot" />
+        <item itemvalue="JUnit.BotTests" />
+        <item itemvalue="JUnit.BotTests.testNotUnderstanding" />
       </list>
     </recent_temporary>
   </component>
@@ -365,36 +535,73 @@
       <workItem from="1538141594395" duration="840000" />
       <workItem from="1538147784374" duration="180000" />
       <workItem from="1538250923334" duration="10496000" />
+      <workItem from="1538521305016" duration="1200000" />
+      <workItem from="1538539374770" duration="3699000" />
+      <workItem from="1538744729702" duration="551000" />
+      <workItem from="1538758956837" duration="598000" />
+      <workItem from="1538763837513" duration="506000" />
+      <workItem from="1538772110073" duration="599000" />
+      <workItem from="1539004861478" duration="7000" />
+      <workItem from="1539195141105" duration="595000" />
+      <workItem from="1539507792813" duration="4421000" />
     </task>
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="BotTests - 2018.10.03 at 02h 34m 28s.xml">
+    <history-entry file="BotTests - 2018.10.03 at 04h 02m 23s.xml">
+      <configuration name="BotTests" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="BotTests - 2018.10.03 at 04h 03m 15s.xml">
+      <configuration name="BotTests" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="BotTests - 2018.10.03 at 04h 05m 12s.xml">
+      <configuration name="BotTests" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="BotTests - 2018.10.03 at 04h 16m 11s.xml">
+      <configuration name="BotTests" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="BotTests_testNotUnderstanding - 2018.10.03 at 04h 20m 30s.xml">
+      <configuration name="BotTests.testNotUnderstanding" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="BotTests - 2018.10.03 at 04h 20m 51s.xml">
+      <configuration name="BotTests" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="BotTests - 2018.10.03 at 04h 21m 22s.xml">
+      <configuration name="BotTests" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="BotTests - 2018.10.14 at 15h 10m 01s.xml">
+      <configuration name="BotTests" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="BotTests - 2018.10.14 at 15h 20m 00s.xml">
+      <configuration name="BotTests" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="BotTests - 2018.10.14 at 15h 20m 10s.xml">
       <configuration name="BotTests" configurationId="JUnit" />
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="21656000" />
+    <option name="totallyTimeSpent" value="33832000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Designer" order="0" />
       <window_info id="UI Designer" order="1" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info id="Image Layers" order="4" />
-      <window_info content_ui="combo" id="Project" order="5" visible="true" weight="0.2637584" />
+      <window_info active="true" content_ui="combo" id="Project" order="5" visible="true" weight="0.28971255" />
       <window_info id="Structure" order="6" side_tool="true" weight="0.25" />
-      <window_info active="true" anchor="bottom" id="Version Control" order="0" visible="true" weight="0.32765958" />
+      <window_info anchor="bottom" id="Version Control" order="0" weight="0.32724252" />
       <window_info anchor="bottom" id="Terminal" order="1" weight="0.32765958" />
-      <window_info anchor="bottom" id="Event Log" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Event Log" order="2" sideWeight="0.50075644" side_tool="true" weight="0.32890365" />
       <window_info anchor="bottom" id="Database Changes" order="3" show_stripe_button="false" />
       <window_info anchor="bottom" id="Message" order="4" />
       <window_info anchor="bottom" id="Find" order="5" />
-      <window_info anchor="bottom" id="Run" order="6" weight="0.0014184397" />
+      <window_info anchor="bottom" id="Run" order="6" sideWeight="0.49924356" visible="true" weight="0.29069766" />
       <window_info anchor="bottom" id="Debug" order="7" weight="0.4" />
-      <window_info anchor="bottom" id="Messages" order="8" weight="0.32624114" />
+      <window_info anchor="bottom" id="Messages" order="8" weight="0.3255814" />
       <window_info anchor="bottom" id="Cvs" order="9" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="10" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="11" />
@@ -448,26 +655,21 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Переработана логика общения бота.&#10;Переработана архитектура обработки входящих. Приветствие и хелп выделены в текстовые файлы." />
     <MESSAGE value="Добавлены тесты на класс Bot. Небольшие изменения в классе Bot. JUnit 4 &#10;добавлен в библиотеку." />
-    <option name="LAST_COMMIT_MESSAGE" value="Добавлены тесты на класс Bot. Небольшие изменения в классе Bot. JUnit 4 &#10;добавлен в библиотеку." />
+    <MESSAGE value="Задачи добавлены в README, чтение вопросов из файла вынесено в класс QuestionLoader.(1 часть 2 задачи)" />
+    <option name="LAST_COMMIT_MESSAGE" value="Задачи добавлены в README, чтение вопросов из файла вынесено в класс QuestionLoader.(1 часть 2 задачи)" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/chatbot/Question.java" />
-    <entry file="file://$PROJECT_DIR$/src/chatbot/Message.java" />
     <entry file="file://$PROJECT_DIR$/bin/chatbot/Bot.class" />
     <entry file="file://$PROJECT_DIR$/bin/chatbot/Question.class" />
     <entry file="file://$PROJECT_DIR$/bin/chatbot/BotState.class" />
     <entry file="file://$PROJECT_DIR$/bin/chatbot/ChatBot.class" />
     <entry file="file://$PROJECT_DIR$/src/help.txt" />
     <entry file="file://$PROJECT_DIR$/help.txt" />
-    <entry file="file://$PROJECT_DIR$/greeting.txt" />
-    <entry file="file://$PROJECT_DIR$/.project" />
     <entry file="file://$PROJECT_DIR$/chatbot.iml">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/questions.txt" />
-    <entry file="file://$PROJECT_DIR$/README.md" />
     <entry file="file://$PROJECT_DIR$/.gitignore" />
-    <entry file="file://$PROJECT_DIR$/.classpath" />
     <entry file="jar://C:/Program Files/Java/jdk-10.0.2/lib/src.zip!/java.base/java/util/concurrent/Callable.java">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -475,27 +677,99 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/chatbot/MultiUserBot.java" />
-    <entry file="file://$PROJECT_DIR$/src/chatbot/BotState.java" />
-    <entry file="file://$PROJECT_DIR$/src/chatbot/ChatBot.java" />
+    <entry file="file://$PROJECT_DIR$/src/chatbot/Message.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="20" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="FIRST">
+          <first_editor relative-caret-position="459">
+            <caret line="27" lean-forward="true" selection-start-line="27" selection-end-line="27" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/chatbot/BotState.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="12" selection-start-line="2" selection-start-column="12" selection-end-line="2" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/chatbot/Bot.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1232">
-          <caret line="25" column="30" lean-forward="true" selection-start-line="25" selection-start-column="30" selection-end-line="25" selection-end-column="30" />
+        <state relative-caret-position="1496">
+          <caret line="110" column="7" selection-start-line="110" selection-start-column="7" selection-end-line="110" selection-end-column="7" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#askQuestion#0;class#Bot#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/greeting.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.project">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="16" selection-start-line="16" selection-end-line="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.classpath">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/chatbot/BotTests.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="308">
-          <caret line="14" column="64" lean-forward="true" selection-start-line="14" selection-start-column="64" selection-end-line="14" selection-end-column="64" />
+        <state relative-caret-position="324">
+          <caret line="46" column="5" lean-forward="true" selection-start-line="46" selection-start-column="5" selection-end-line="46" selection-end-column="5" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#135#136#0" expanded="true" />
-            <element signature="e#175#176#0" expanded="true" />
-            <element signature="e#196#197#0" expanded="true" />
-            <element signature="e#236#237#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/chatbot/ChatBot.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="459">
+          <caret line="27" column="1" lean-forward="true" selection-start-line="27" selection-start-column="1" selection-end-line="27" selection-end-column="1" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/chatbot/MultiUserBot.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="13" column="25" lean-forward="true" selection-start-line="13" selection-start-column="25" selection-end-line="13" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/chatbot/QuestionsLoader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="22" column="31" selection-start-line="22" selection-start-column="31" selection-end-line="22" selection-end-column="31" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/questions.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" lean-forward="true" selection-start-line="6" selection-end-line="6" />
         </state>
       </provider>
     </entry>

@@ -1,11 +1,15 @@
 package chatbot;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class ChatBot {
 
 	public static void main(String[] args) {
-		MultiUserBot multiUserBot = new MultiUserBot();
+		QuestionsLoader questionsLoader = new QuestionsLoader();
+		ArrayList<Question> questions = questionsLoader.loadQuestions();
+		MultiUserBot multiUserBot = new MultiUserBot(questions);
+
 		Scanner scanner = new Scanner(System.in);
 		while (true) {
 			String check;

@@ -1,7 +1,5 @@
 package chatbot;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.*;
 import java.util.concurrent.Callable;
 
@@ -29,26 +27,26 @@ class Bot {
 
 
 
-    public Bot(String id){
+    public Bot(String id, List<Question> questions){
 		userId = id;
         state = BotState.NotWorking;
-        questions = new ArrayList<Question>();
+        this.questions = questions;
         random = new Random();
 
-        behaviour = new HashMap<BotState, Map<String, Callable<String>>>();
-        HashMap<String, Callable<String>> inner = new HashMap<String, Callable<String>>();
+        behaviour = new HashMap<>();
+        HashMap<String, Callable<String>> inner = new HashMap<>();
         inner.put("/help", () ->  getHelpText());
         behaviour.put(BotState.WaitAnswer, inner);
         inner.put("/play", () ->  startNewGame());
         behaviour.put(BotState.Ready, inner);
-        inner = new HashMap<String, Callable<String>>();
+        inner = new HashMap<>();
         inner.put("/start", () ->  getGreetText());
         behaviour.put(BotState.NotWorking, inner);
     }
 
     public Message respondTo(Message m) {
-
         String response = null;
+
         Map<String, Callable<String>> inner = behaviour.get(state);
         try {
             if (state == BotState.NotWorking)
@@ -58,7 +56,7 @@ class Bot {
             else
                 response = inner.getOrDefault(m.content, () -> getDefaultText()).call();
         } catch (java.lang.Exception e) {
-
+            System.out.println("боту не удалось выполнить действие");
         }
 
         return new Message(userId, response);
@@ -69,15 +67,12 @@ class Bot {
         return HELP_TEXT;
     }
 
-    private String getGreetText()
-    {
+    private String getGreetText() {
         state = BotState.Ready;
         return GREET_TEXT;
     }
 
-    private String getWrongStartText(){
-        return WRONG_START_TEXT;
-    }
+    private String getWrongStartText(){ return WRONG_START_TEXT; }
 
     private String startNewGame()
     {
@@ -88,9 +83,7 @@ class Bot {
         return currentQuestion.questionText;
     }
 
-    private String getDefaultText(){
-        return DEFAULT_TEXT;
-    }
+    private String getDefaultText(){ return DEFAULT_TEXT; }
 
     private String askQuestion(String content){
         if (isCorrect(content)) {
@@ -113,42 +106,11 @@ class Bot {
         }
     }
 
-
-
     private void chooseQuestion() {
-        if (questions.isEmpty())
-            loadQuestions();
         int index = random.nextInt(questions.size());
         this.currentQuestion = questions.get(index);
         questions.remove(index);
     }
 
-	private void loadQuestions() {
-    	String content = null;
-		try {
-            Scanner reader = new Scanner(new File("questions.txt"));
-            content = reader
-            		.useDelimiter("\\A")
-            		.next();
-            reader.close();
-            
-        } catch (IOException e) {
-            System.out.println("не удалось открыть questions.txt ");
-        }
-               
-        questions = new ArrayList<Question>();
-		for (String q: content.split("\r\n\r\n"))
-			questions.add(makeQuestion(q));
-    }
-
-	private Question makeQuestion(String raw) {
-		int splitIndex = raw.lastIndexOf('\n') + 1;
-		return new Question(raw.substring(0,  splitIndex),
-				raw.substring(splitIndex));
-	}
-    
-    private boolean isCorrect(String answer) {
-    	return answer.equals(currentQuestion.rightAnswer);
-    }
-
+    private boolean isCorrect(String answer) { return answer.equals(currentQuestion.rightAnswer); }
 }
