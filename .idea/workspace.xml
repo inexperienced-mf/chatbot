@@ -2,18 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ca7d420d-1162-4914-b865-418f744aa70f" name="Default Changelist" comment="Задачи добавлены в README, чтение вопросов из файла вынесено в класс QuestionLoader.(1 часть 2 задачи)">
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/chatbot/QuestionsLoader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.classpath" beforeDir="false" afterPath="$PROJECT_DIR$/.classpath" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.project" beforeDir="false" afterPath="$PROJECT_DIR$/.project" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/chatbot/Bot.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/chatbot/Bot.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/questions.txt" beforeDir="false" afterPath="$PROJECT_DIR$/questions.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/chatbot/Bot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/chatbot/Bot.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/chatbot/BotTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/chatbot/BotTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/chatbot/ChatBot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/chatbot/ChatBot.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/chatbot/MultiUserBot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/chatbot/MultiUserBot.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chatbot/ChatBot.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/chatbot/ChatBot.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chatbot/MultiUserBot.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/chatbot/MultiUserBot.class" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/bin/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -168,7 +159,7 @@
     <session id="-386214522">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="8" />
+          <entry key="project.closed" value="9" />
           <entry key="project.open.time.16" value="3" />
           <entry key="project.open.time.19" value="2" />
           <entry key="project.open.time.21" value="2" />
@@ -280,8 +271,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/questions.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="6" lean-forward="true" selection-start-line="6" selection-end-line="6" />
+            <state relative-caret-position="340">
+              <caret line="20" column="1" lean-forward="true" selection-start-line="20" selection-start-column="1" selection-end-line="20" selection-end-column="1" />
             </state>
           </provider>
         </entry>
@@ -430,7 +421,7 @@
     <property name="Repository.Attach.Sources" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1539512486505" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1539512610986" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
@@ -543,8 +534,16 @@
       <workItem from="1538772110073" duration="599000" />
       <workItem from="1539004861478" duration="7000" />
       <workItem from="1539195141105" duration="595000" />
-      <workItem from="1539507792813" duration="4421000" />
+      <workItem from="1539507792813" duration="4559000" />
     </task>
+    <task id="LOCAL-00001" summary="Задачи добавлены в README, чтение вопросов из файла вынесено в класс QuestionLoader.(1 часть 2 задачи)">
+      <created>1539512501943</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1539512501943</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -580,7 +579,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="33832000" />
+    <option name="totallyTimeSpent" value="33970000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -599,7 +598,7 @@
       <window_info anchor="bottom" id="Database Changes" order="3" show_stripe_button="false" />
       <window_info anchor="bottom" id="Message" order="4" />
       <window_info anchor="bottom" id="Find" order="5" />
-      <window_info anchor="bottom" id="Run" order="6" sideWeight="0.49924356" visible="true" weight="0.29069766" />
+      <window_info anchor="bottom" id="Run" order="6" sideWeight="0.49924356" weight="0.29069766" />
       <window_info anchor="bottom" id="Debug" order="7" weight="0.4" />
       <window_info anchor="bottom" id="Messages" order="8" weight="0.3255814" />
       <window_info anchor="bottom" id="Cvs" order="9" weight="0.25" />
@@ -768,8 +767,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/questions.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" lean-forward="true" selection-start-line="6" selection-end-line="6" />
+        <state relative-caret-position="340">
+          <caret line="20" column="1" lean-forward="true" selection-start-line="20" selection-start-column="1" selection-end-line="20" selection-end-column="1" />
         </state>
       </provider>
     </entry>
