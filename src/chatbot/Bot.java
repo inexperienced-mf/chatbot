@@ -23,9 +23,7 @@ class Bot {
     private List<Question> questions;
     private int questionsLeft;
     private int score;
-    private Map<BotState, Map<String, Callable<String >>> behaviour;
-
-
+    private Map<BotState, Map<String, Callable<Message>>> behaviour;
 
     public Bot(String id, List<Question> questions){
 		userId = id;
@@ -34,20 +32,25 @@ class Bot {
         random = new Random();
 
         behaviour = new HashMap<>();
-        HashMap<String, Callable<String>> inner = new HashMap<>();
+
+        HashMap<String, Callable<Message>> inner = new HashMap<>();
         inner.put("/help", () ->  getHelpText());
         behaviour.put(BotState.WaitAnswer, inner);
+
+        inner = new HashMap<>();
+        inner.put("/help", () ->  getHelpText());
         inner.put("/play", () ->  startNewGame());
         behaviour.put(BotState.Ready, inner);
+
         inner = new HashMap<>();
         inner.put("/start", () ->  getGreetText());
         behaviour.put(BotState.NotWorking, inner);
     }
 
     public Message respondTo(Message m) {
-        String response = null;
+        Message response = null;
 
-        Map<String, Callable<String>> inner = behaviour.get(state);
+        Map<String, Callable<Message>> inner = behaviour.get(state);
         try {
             if (state == BotState.NotWorking)
                 response = inner.getOrDefault(m.content, () -> getWrongStartText()).call();
@@ -59,50 +62,56 @@ class Bot {
             System.out.println("боту не удалось выполнить действие");
         }
 
-        return new Message(userId, response);
+        return response;
 	}
 
-	private static String getHelpText()
-    {
-        return HELP_TEXT;
+	private Message getHelpText() {
+        return new Message(userId, HELP_TEXT, MessageType.HelpMessage);
     }
 
-    private String getGreetText() {
+    private Message getGreetText() {
         state = BotState.Ready;
-        return GREET_TEXT;
+        return new Message(userId, GREET_TEXT, MessageType.GreetMessage);
     }
 
-    private String getWrongStartText(){ return WRONG_START_TEXT; }
+    private Message getWrongStartText(){
+        return new Message(userId, WRONG_START_TEXT, MessageType.NotStartedMessage);
+    }
 
-    private String startNewGame()
+    private Message startNewGame()
     {
-        questionsLeft = 3;
+        questionsLeft = questions.size();
         score = 0;
         chooseQuestion();
         state = BotState.WaitAnswer;
-        return currentQuestion.questionText;
+        return new Message(userId, currentQuestion.questionText, MessageType.QuestionMessage);
     }
 
-    private String getDefaultText(){ return DEFAULT_TEXT; }
+    private Message getDefaultText(){
+        return new Message(userId, DEFAULT_TEXT, MessageType.IncorrectCommandMessage );
+    }
 
-    private String askQuestion(String content){
+    private Message askQuestion(String content){
         if (isCorrect(content)) {
             score++;
             questionsLeft--;
             if (questionsLeft == 0) {
                 state = BotState.Ready;
-                return String.format(
-                        "Верно! Ура, викторина наконец-то закончилась! Ты набрал %d очков", score );
+                return new Message(userId, String.format(
+                        "Верно! Ура, викторина наконец-то закончилась! Ты набрал %d очков", score ),
+                        MessageType.ResultsMessage);
             }
             else {
                 chooseQuestion();
-                return String.format("Верно! Следующий вопрос: \n %s",
-                        currentQuestion.questionText);
+                return new Message(userId, String.format("Верно! Следующий вопрос: \n %s",
+                        currentQuestion.questionText), MessageType.QuestionMessage);
             }
         }
         else {
             score--;
-            return "Неправильно :с . Ты теряешь 1 очко. Ещё варианты?";
+            return new Message(userId,
+                    "Неправильно :с . Ты теряешь 1 очко. Ещё варианты?",
+                    MessageType.WrongAnswerMessage);
         }
     }
 

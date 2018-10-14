@@ -19,7 +19,7 @@ public class ChatBot {
 				if (lines.length < 2)
 					System.out.printf("||DUDE AUTHORIZE|| \n" );
 				else {
-					Message response = multiUserBot.respondTo(new Message(lines[0], lines[1]));
+					Message response = multiUserBot.respondTo(new Message(lines[0], lines[1], MessageType.UserMessage));
 					System.out.printf("Bot: %s \n", response.content );
 				}
 			}
