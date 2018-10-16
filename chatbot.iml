@@ -27,5 +27,6 @@
         <SOURCES />
       </library>
     </orderEntry>
+    <orderEntry type="library" name="telegrambots-4.1-jar-with-dependencies" level="project" />
   </component>
 </module>

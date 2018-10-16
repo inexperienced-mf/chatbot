@@ -5,20 +5,17 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class QuestionsLoader {
-    public ArrayList<Question> loadQuestions() {
+class QuestionsLoader {
+    ArrayList<Question> loadQuestions() {
         String content = null;
-        try {
-            Scanner reader = new Scanner(new File("questions.txt"));
+        try (Scanner reader = new Scanner(new File("questions.txt"))) {
             content = reader
                     .useDelimiter("\\A")
                     .next();
-            reader.close();
-
         } catch (IOException e) {
             System.out.println("не удалось открыть questions.txt ");
         }
-
+        assert content != null : "Content is null";
         ArrayList<Question> questions = new ArrayList<>();
         for (String q: content.split("\r\n\r\n"))
             questions.add(makeQuestion(q));
