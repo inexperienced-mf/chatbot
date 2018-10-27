@@ -20,7 +20,7 @@ class Bot {
     private static final String DEFAULT_TEXT = "Не совсем ясно. Уточни правила общеня: /help";
     private Question currentQuestion;
     private Random random;
-    private List<Question> questions;
+    private ArrayList<Question> questions;
     private int questionsLeft;
     private int score;
     private Map<BotState, Map<String, Callable<Message>>> behaviour;
@@ -28,22 +28,22 @@ class Bot {
     public Bot(String id, List<Question> questions){
 		userId = id;
         state = BotState.NotWorking;
-        this.questions = questions;
+        this.questions = new ArrayList<>(questions);
         random = new Random();
 
         behaviour = new HashMap<>();
 
         HashMap<String, Callable<Message>> inner = new HashMap<>();
-        inner.put("/help", () ->  getHelpText());
+        inner.put("/help", this::getHelpText);
         behaviour.put(BotState.WaitAnswer, inner);
 
         inner = new HashMap<>();
-        inner.put("/help", () ->  getHelpText());
-        inner.put("/play", () ->  startNewGame());
+        inner.put("/help", this::getHelpText);
+        inner.put("/play", this::startNewGame);
         behaviour.put(BotState.Ready, inner);
 
         inner = new HashMap<>();
-        inner.put("/start", () ->  getGreetText());
+        inner.put("/start", this::getGreetText);
         behaviour.put(BotState.NotWorking, inner);
     }
 
@@ -53,13 +53,13 @@ class Bot {
         Map<String, Callable<Message>> inner = behaviour.get(state);
         try {
             if (state == BotState.NotWorking)
-                response = inner.getOrDefault(m.content, () -> getWrongStartText()).call();
+                response = inner.getOrDefault(m.content, this::getWrongStartText).call();
             else if (state == BotState.WaitAnswer)
                 response = inner.getOrDefault(m.content, () -> askQuestion(m.content)).call();
             else
-                response = inner.getOrDefault(m.content, () -> getDefaultText()).call();
+                response = inner.getOrDefault(m.content, this::getDefaultText).call();
         } catch (java.lang.Exception e) {
-            System.out.println("боту не удалось выполнить действие");
+            e.printStackTrace();
         }
 
         return response;
@@ -84,7 +84,7 @@ class Bot {
         score = 0;
         chooseQuestion();
         state = BotState.WaitAnswer;
-        return new Message(userId, currentQuestion.questionText, MessageType.QuestionMessage);
+        return new Message(userId, currentQuestion.text, MessageType.QuestionMessage, currentQuestion.options);
     }
 
     private Message getDefaultText(){
@@ -104,14 +104,14 @@ class Bot {
             else {
                 chooseQuestion();
                 return new Message(userId, String.format("Верно! Следующий вопрос: \n %s",
-                        currentQuestion.questionText), MessageType.QuestionMessage);
+                        currentQuestion.text), MessageType.QuestionMessage, currentQuestion.options);
             }
         }
         else {
             score--;
             return new Message(userId,
                     "Неправильно :с . Ты теряешь 1 очко. Ещё варианты?",
-                    MessageType.WrongAnswerMessage);
+                    MessageType.WrongAnswerMessage, currentQuestion.options);
         }
     }
 

@@ -14,7 +14,12 @@ public class ChatBot {
 	public static void main(String[] args) {
 		QuestionsLoader questionsLoader = new QuestionsLoader();
 		ArrayList<Question> questions = questionsLoader.loadQuestions();
-		TelegramBinder tgBot = new TelegramBinder(questions);
+        TelegramBinder tgBot = null;
+        try {
+            tgBot = new TelegramBinder(questions);
+        } catch (EnvVarNotFoundException e) {
+            e.printStackTrace();
+        }
         TelegramBotsApi botApi = new TelegramBotsApi();
         try {
             botApi.registerBot(tgBot);
