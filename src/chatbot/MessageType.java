@@ -1,12 +1,21 @@
 package chatbot;
 
 public enum MessageType {
-    HelpMessage,
-    GreetMessage,
-    NotStartedMessage,
-    IncorrectCommandMessage,
-    QuestionMessage,
-    WrongAnswerMessage,
-    ResultsMessage,
-    UserMessage
+    Help,
+    Greet,
+    NotStarted,
+    IncorrectCommand,
+    Question,
+    WrongAnswer,
+    Results,
+    User,
+    PasswordRequest,
+    AdminModeEnabled,
+    AdminModeNotEnabled,
+    AdminModeDisabled,
+    AppealRequestAdded,
+    AppealContentNeeded,
+    NoAppealRequestLeft,
+    AppealDecisionRequest,
+    AppealAnswer
 }

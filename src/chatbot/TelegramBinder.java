@@ -32,7 +32,7 @@ public class TelegramBinder extends TelegramLongPollingBot {
         chatbot.Message abstractMsg = new chatbot.Message(
                 String.valueOf(m.getChatId()),
                 text,
-                MessageType.UserMessage
+                MessageType.User
                 );
         chatbot.Message reply = multiUserBot.respondTo(abstractMsg);
         SendMessage sendMsg = new SendMessage();
