@@ -1,6 +1,5 @@
 package chatbot;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -20,9 +19,5 @@ class Question {
         this.text = text;
         rightAnswer = options[rightOptionIndex];
         this.options = Collections.unmodifiableList(Arrays.asList(options));
-    }
-
-    boolean hasOptions() {
-        return options != null;
     }
 }

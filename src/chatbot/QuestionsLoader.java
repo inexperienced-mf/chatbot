@@ -1,21 +1,21 @@
 package chatbot;
 
-import com.google.common.collect.Iterables;
-import com.sun.jdi.InvalidLineNumberException;
-
 import java.io.File;
 import java.io.IOException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Scanner;
 
 class QuestionsLoader {
-    ArrayList<Question> loadQuestions() {
+    ArrayList<Question> loadQuestions(String pathname) {
         String content = null;
-        try (Scanner reader = new Scanner(new File("questions.txt"))) {
+        try (Scanner reader = new Scanner(new File(pathname))) {
             content = reader
                     .useDelimiter("\\A")
                     .next();
         } catch (IOException e) {
-            System.out.println("не удалось открыть questions.txt ");
+            e.printStackTrace();
+            System.out.println(String.format("Не удалось открыть файл с вопросами: %s", pathname));
         }
         assert content != null : "Content is null";
         ArrayList<Question> questions = new ArrayList<>();

@@ -11,18 +11,15 @@ import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TelegramBinder extends TelegramLongPollingBot {
+public class TelegramAdapter extends TelegramLongPollingBot {
 
     private MultiUserBot multiUserBot;
     private final String botToken;
 
-    TelegramBinder(ArrayList<Question> questions) throws EnvVarNotFoundException {
+    TelegramAdapter(ArrayList<Question> questions, String token, String adminPassword) {
         super();
-        multiUserBot = new MultiUserBot(questions);
-        botToken = System.getenv("telegram_token");
-        if (botToken == null) throw new EnvVarNotFoundException(
-                "Переменная среды telegram_token не определена."
-        );
+        multiUserBot = new MultiUserBot(questions, adminPassword);
+        botToken = token;
     }
 
     @Override
@@ -32,8 +29,8 @@ public class TelegramBinder extends TelegramLongPollingBot {
         chatbot.Message abstractMsg = new chatbot.Message(
                 String.valueOf(m.getChatId()),
                 text,
-                MessageType.UserMessage
-                );
+                MessageType.User
+        );
         chatbot.Message reply = multiUserBot.respondTo(abstractMsg);
         SendMessage sendMsg = new SendMessage();
         sendMsg.setChatId(m.getChatId());
