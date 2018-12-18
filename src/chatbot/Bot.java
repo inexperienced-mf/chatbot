@@ -35,14 +35,17 @@ class Bot {
     private int gameLength = 3;
     private String adminPassword;
     private BotState previousState;
-    private ArrayList<AppealRequest> appealRequests;
+    private final List<AppealRequest> appealRequests;
+    private AppealRequest currentAppealRequest;
     private String appealUserId;
 
 
-    public Bot(String id, List<Question> questions, ArrayList<AppealRequest> appealRequests, String adminPassword){
+    public Bot(String id, List<Question> questions, List<AppealRequest> appealRequests, String adminPassword){
         userId = id;
         state = BotState.NotWorking;
-        this.questions = new ArrayList<>(questions);
+        synchronized (questions) {
+            this.questions = new ArrayList<>(questions);
+        }
         this.appealRequests = appealRequests;
         this.adminPassword = adminPassword;
         random = new Random();
@@ -67,13 +70,13 @@ class Bot {
     private HashMap<String, Callable<Message>> fillAppealAdminBehaviour() {
         HashMap<String, Callable<Message>> inner;
         inner = new HashMap<>();
-        inner.put("/next", this::checkAppealRequestList);
+        inner.put("/next", this::tryShowAppealRequest);
         return inner;
     }
 
     private HashMap<String, Callable<Message>> fillAdminBehaviour() {
         HashMap<String, Callable<Message>> inner = new HashMap<>();
-        inner.put("/appeal", this::checkAppealRequestList);
+        inner.put("/appeal", this::tryShowAppealRequest);
         inner.put("/user", this::switchFromAdminMode);
         inner.put("/help", this::getAdminHelpText);
         return inner;
@@ -106,7 +109,7 @@ class Bot {
         return inner;
     }
 
-    Message respondTo(Message m) {
+    synchronized Message respondTo(Message m) {
         Message response = null;
 
         Map<String, Callable<Message>> inner = behaviour.get(state);
@@ -154,16 +157,18 @@ class Bot {
         return new Message(userId,"Неверный пароль.", MessageType.AdminAuthFailed);
     }
 
-    private Message checkAppealRequestList() {
-        if (appealRequests.size() == 0) {
+    private Message tryShowAppealRequest() {
+        int requestsLeft;
+        requestsLeft = appealRequests.size();
+        if (requestsLeft == 0) {
             state = BotState.Admin;
             return new Message(userId, "Апелляций нет.",
                     MessageType.NoAppealsLeft);
         }
-        AppealRequest request = appealRequests.remove(0);
-        appealUserId = request.userId;
+        currentAppealRequest = appealRequests.remove(0);
+        appealUserId = currentAppealRequest.userId;
         state = BotState.WaitsForAppealDecision;
-        return new Message(userId, stringifyRequest(request), MessageType.AppealDecisionRequest);
+        return new Message(userId, stringifyRequest(currentAppealRequest), MessageType.AppealDecisionRequest);
     }
 
     private Message answerAppealRequest(String content) {
